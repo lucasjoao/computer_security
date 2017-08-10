@@ -1,0 +1,36 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc} % default from sharelatex
+\usepackage{indentfirst} % to indent fist paragraph
+\usepackage[brazilian]{babel} % BR
+\usepackage{setspace} % space between lines
+
+\title{Provedor de serviço criptográfico: \\ GnuPG}
+\author{Lucas João Martins}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\doublespacing
+\section*{}
+GnuPG é uma alternativa de software livre ao aplicativo PGP de criptografia. Trata-se de uma completa implementação do padrão OpenPGP definido pela RFC4880. O GnuPG permite cifrar/assinar dados e comunicação, e, apresenta um sistema de gerenciamento de chaves versátil com acesso em qualquer tipo de diretório de chave pública. Trata-se de uma ferramenta de linha de comando com fácil integração em outras aplicações. Há várias aplicações de frontend e bibliotecas que utilizam o GnuPG como backend. Por fim, ele também suporta S/MIME e ssh.
+
+O sofware faz parte do projeto GNU e recebe um grande financiamento do governo alemão. Seu criador foi o desenvolvedor alemão Werner Koch, com uma primeira release em 07 de setembro de 1999 (18 anos atrás). GnuPG é licenciado pela GNU GPLv3, além de ter mais de 80\% do seu código escrito em C. Vale citar também que ele está disponível para diversos sistemas operacionais, como Microsoft Windows, macOS, Linux e Android.
+
+A aplicação defende e faz propaganda para que as pessoas se preocupem com a sua privacidade. Aliás, recentemente foi uma das ferramentas utilizadas por Snowden para desmascarar os segredos da NSA. Para finalizar, essas são as principais características, note que algumas já foram citadas, do GnuPG:
+\begin{itemize}
+\item implementação completa do OpenPGP;
+\item implementação completa do CMS/X.509 (S/MIME);
+\item implementação de um ssh-agent;
+\item executa em diversos sistemas operacionais;
+\item alternativa completa ao PGP escrita do zero;
+\item não utiliza algoritmos patenteados;
+\item funciona melhor que o PGP através de features de segurança consideradas o estado da arte;
+\item decifra e verifica mensagens do PGP 5, 6 e 7;
+\item suporta RSA, ECDH, ECDSA, EdDSA, Elgamal, DSA, AES, Camellia, 3DES, Twofish, SHA2 e muitos outros algoritmos;
+\item suporta diversas linguagens;
+\item possui um sistema de ajuda online;
+\item suporte integrado para HKP (sks-keyservers.net).
+\end{itemize}
+\end{document}
