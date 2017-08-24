@@ -18,7 +18,12 @@
 \subsection*{1. (3.7) Show that DES decryption is, in fact, the inverse of DES
 encryption.}
 
-% add 3.12 ou 3.13
+  A constatação de que o decifrador do DES é o inverso do cifrador do DES pode
+  ser alcançada facilmente após a observação dos passos de cada uma das etapas,
+  onde fica visível que enquanto um lado possui etapas em uma sequência X, o
+  outro lado possui etapas em uma sequência contrária de X. Além disso, sabe-se
+  que IP é o inverso de IP\textsuperscript{-1}, fato que ajuda na comprovação
+  dessa inversão entre cifrador e decifrador.
 
 \subsection*{2. (3.9) Consider the substitution defined by row 1 of S-box
 S\textsubscript{1} in Table S.2. Show a block diagram similar to Figure 3.2 that
@@ -40,37 +45,79 @@ composed of all ones and the external key is composed of all ones.}
 
   \begin{itemize}
     \item Chave K = 11...11 (56 bits)
-    \item Chave após cada round K\textsubscript{1} = ... = K\textsubscript{16} = 11...11 (48 bits)
+    \item Chave após cada round K\textsubscript{1} = ... = K\textsubscript{16} =
+    11...11 (48 bits)
     \item Texto cifrado C = 11...11 (64 bits)
     \item Entrada no primeiro round para decifrar = 11...11 (64 bits)
     \begin{itemize}
       \item LD\textsubscript{0} = RD\textsubscript{0} = 11...11 (32 bits)
     \end{itemize}
-    \item Saída do primeiro round (conforme livro) = LD\textsubscript{1}RD\textsubscript{1}
+    \item Saída do primeiro round (conforme livro) =
+    LD\textsubscript{1}RD\textsubscript{1}
     \begin{itemize}
       \item LD\textsubscript{1} = RD\textsubscript{0} = 11...11 (32 bits)
-      \item RD\textsubscript{1} = LD\textsubscript{0} + F(RD\textsubscript{0} * K\textsubscript{16})
+      \item RD\textsubscript{1} = LD\textsubscript{0} + F(RD\textsubscript{0},
+      K\textsubscript{16})
     \end{itemize}
+    \item \textbf{Os bits 1 e 16 são provenientes de LD\textsubscript{1}, logo
+    são iguais a `1'}
+    \item Por outro lado, os bits 33 e 48 são os bits 1 e 16 de
+    RD\textsubscript{1}
+    \begin{itemize}
+      \item Após análise pode-se perceber que o bit 1 da função F vem da quarta
+      saída de S4, enquanto que o bit 16 dessa mesma função vem da segunda saída
+      de S3. Além disso, esses bits fazem XOR com as possições correspondentes
+      de LD\textsubscript{0}
+      \item A entrada para todas as caixas S é igual a 000000
+      \item A saída de S3 é 1010, sendo o bit que buscamos o `0' da segunda
+      posição
+      \item A saída de S4 é 0111, sendo o bit que buscamos o `1' da quarta
+      posição
+      \item Após o XOR, o bit que era o 1 da função F é igual a `0', enquanto
+      que o bit que era o 16 da função F é igual a `1'
+    \end{itemize}
+    \item \textbf{No fim, o bit 33 é igual a `0' e o bit 45 é igual a `1'}
   \end{itemize}
 
-\subsection*{4. (3.15) Show that in DES the first 24 bits of each subkey come
+\subsection*{4. (3.12) Compare the initial permutation table (Table S.1a) with
+the permuted choice one table (Table S.3b). Are the structures similar? If so,
+describe the similarities. What conclusions can you draw from this analysis?}
+
+  \begin{figure}[h]
+    \includegraphics[width=\linewidth]{des_ip}
+    \caption{Initial permutation table (Table S.1a)}
+  \end{figure}
+
+  \begin{figure}[h]
+    \includegraphics[width=\linewidth]{des_pc_1}
+    \caption{Permuted choice one table (Table S.3b)}
+  \end{figure}
+
+  As estruturas são muito similares, na verdade são praticamente iguais, mas
+  possuem algumas diferenças:
+  \begin{itemize}
+    \item PC\textsuperscript{-1} não possui uma oitava coluna
+    \item os números são iguais, mas as suas posições diferem entre as duas
+    tabelas
+  \end{itemize}
+  A principal conclusão após verificar essa similaridade é de que esse fato pode
+  permitir uma implementação parecida entre as duas.
+
+\subsection*{5. (3.15) Show that in DES the first 24 bits of each subkey come
 from the same subset of 28 bits of the initial key and that the second 24 bits
 of each subkey come from a disjoint subset of 28 bits of the initial key.}
 
-  Basta observar a tabela de escolha de chave no DES (\textit{compreension D-box}), onde é visto que os primeiros 24 bits são selecionados dos primeiros 28 bits e os últimos 24 bits são selecionados dos últimos 28 bits.
+  Basta observar a tabela de escolha de chave no DES (\textit{compreension
+  D-box}), onde é visto que os primeiros 24 bits são selecionados dos primeiros
+  28 bits e os últimos 24 bits são selecionados dos últimos 28 bits.
 
   \begin{figure}[h]
     \includegraphics[width=\linewidth]{des_key_table}
     \caption{Tabela de escolha de chave no DES}
   \end{figure}
 
-\subsection*{5. (3.16) Refer to Figure G.2, which depicts key generation for
+\subsection*{6. (3.16) Refer to Figure G.2, which depicts key generation for
 S-DES.}
-
-  \begin{figure}[h]
-    \includegraphics[width=\linewidth]{s_des_key_generation}
-    \caption{Figure G.2}
-  \end{figure}
 
   \subsubsection*{a. How important is the initial P10 permutation function?}
 
