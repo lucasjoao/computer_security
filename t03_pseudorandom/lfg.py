@@ -1,23 +1,23 @@
 # -*- coding: utf-8 -*-
-"""Implementação do 'Lagged Fibonacci generator'"""
+"""Implementacao do 'Lagged Fibonacci generator'"""
 import random
 
 
 class lfg:
-    """Classe que constrói o gerador de números pseudo-aleatórios
+    """Classe que constroi o gerador de numeros pseudo-aleatorios
 
     Atributos:
-        lags: tupla de dois valores que irão representar os 'lags' da fórmula
-        exponent: expoente que irá na potência de 2 que é feita de módulo da
-        fórmula
+        lags: tupla de dois valores que irao representar os 'lags' da formula
+        exponent: expoente que ira na potencia de 2 que e feita de modulo da
+        formula
     """
 
     def __init__(self, lags, exponent):
-        """Construtor com todos os atributos obrigatórios
+        """Construtor com todos os atributos obrigatorios
 
         Args:
-            seed: lista vazia que irá conter a semente do gerador
-            além dos já especificados na classe
+            seed: lista vazia que ira conter a semente do gerador
+            alem dos ja especificados na classe
         """
         self.j = lags[0]
         self.k = lags[1]
@@ -25,14 +25,14 @@ class lfg:
         self.seed = []
 
     def make_seed(self):
-        """Monta a lista de números que será utilizada como semente no gerador
+        """Monta a lista de numeros que sera utilizada como semente no gerador
 
-        Para o funcionamento correto do algoritmo é necessário que k valores
-        aleatórios sejam utilizados como semente. Nessa implementação isso é
+        Para o funcionamento correto do algoritmo e necessario que k valores
+        aleatorios sejam utilizados como semente. Nessa implementacao isso e
         feito da seguinte forma:
-            Utiliza-se o módulo random do python para gerar um número entre 0 e
+            Utiliza-se o modulo random do python para gerar um numero entre 0 e
             1, para assim multiplicar esse valor por 10000
-            (um valor arbitrário) e por fim pegar a parte inteira desse
+            (um valor arbitrario) e por fim pegar a parte inteira desse
             resultado e adicionar na lista de sementes
         """
         i = 0
@@ -41,52 +41,52 @@ class lfg:
             i += 1
 
     def valid_amount(self, n):
-        """Verifica a validade dos argumentos utilizados na geração dos números
+        """Verifica a validade dos argumentos utilizados na geracao dos numeros
 
-        Argumentos serão válidos quando:
+        Argumentos serao validos quando:
             j < k
             n - j < k
             n - k < k
 
         Args:
-            n: quantidade de números que serão gerados
+            n: quantidade de numeros que serao gerados
 
         Returns:
-            True se os argumentos são validos, senão False
+            True se os argumentos sao validos, senao False
         """
         return True if n - self.j < self.k and self.j < self.k else False
 
     def alfg_generate(self, n):
-        """Gerador de números pseudo-aleatórios com a operação de adição
+        """Gerador de numeros pseudo-aleatorios com a operacao de adicao
 
-        Gera uma lista com n números pseudo-aleatórios conforme o algoritmo
-        alfg (additive lagged fibonacci generator), ou seja, há outras versões
-        que ao invés da adição para montar o p do algoritmo utilizam da:
-            subtração
-            multiplicação
+        Gera uma lista com n numeros pseudo-aleatorios conforme o algoritmo
+        alfg (additive lagged fibonacci generator), ou seja, ha outras versoes
+        que ao inves da adicao para montar o p do algoritmo utilizam da:
+            subtracao
+            multiplicacao
             xor
-        O algoritmo utiliza da seguinte relação:
-            Para cada número que será gerado a lista de sementes é iterada:
-                Quando é o primeiro elemento da lista de sementes:
-                    Calcula-se o pseudo-aleatório p:
+        O algoritmo utiliza da seguinte relacao:
+            Para cada numero que sera gerado a lista de sementes e iterada:
+                Quando e o primeiro elemento da lista de sementes:
+                    Calcula-se o pseudo-aleatorio p:
                         p  = (seed_{n - j} + seed_{n - k}) mod m
-                            Onde seed é a lista de sementes
-                Quando é o último elemento da lista de sementes:
-                    A posição recebe o pseudo-aleatório calculado
+                            Onde seed e a lista de sementes
+                Quando e o ultimo elemento da lista de sementes:
+                    A posicao recebe o pseudo-aleatorio calculado
                 Nos outros casos:
-                    O elemento à direita da lista vem para a posição atual
+                    O elemento a direita da lista vem para a posicao atual
 
         Args:
-            n: quantidade de números que serão gerados
+            n: quantidade de numeros que serao gerados
 
         Returns:
-            lista com os n números gerados
+            lista com os n numeros gerados
 
         Raises:
-            Exception: quando os argumentos são considerados inválidos
+            Exception: quando os argumentos sao considerados invalidos
         """
         if not self.valid_amount(n):
-            raise Exception("Valores inválidos!")
+            raise Exception("Valores invalidos!")
 
         result = []
         self.make_seed()
