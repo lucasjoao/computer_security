@@ -1,10 +1,12 @@
 \documentclass[12pt]{article}
 \usepackage[utf8]{inputenc} % default from sharelatex
-\usepackage[a4paper, left=30mm, right=30mm, top=30mm, bottom=30mm]{geometry} % dont break my code
+\usepackage[a4paper, left=30mm, right=30mm, top=30mm, bottom=30mm]{geometry}
+% dont break my code
 \usepackage{indentfirst} % to indent fist paragraph
 \usepackage[brazilian]{babel} % BR
 \usepackage{listings} % to show code
 \usepackage{xcolor} % to colors
+\usepackage{hyperref} % to links
 
 \lstset{
   language=Python,
@@ -29,6 +31,10 @@
   stringstyle=\color{red}
 }
 
+\hypersetup{
+  colorlinks=true,
+  urlcolor=blue
+}
 
 \title{
   Geradores de números pseudo-aleatórios: \\
@@ -46,17 +52,68 @@
 \lstinputlisting{lfg.py}
 \lstinputlisting{lcg.py}
 
-
 \section{Explicação dos algoritmos}
+% comentar sobre implementação não usar coprimo
+
+
 
 \section{Tabelas}
 
 \section{Comparação entre os algoritmos}
+% comentar sobre diferentes formas de implementação
 
 \section{Complexidade dos algoritmos}
+\begin{itemize}
+  \item Inversive congruential generator: $O(n * q)$
+  \item Lagged Fibonacci generator: $O(n * k)$
+  \item Linear congruential generator: $O(n)$
+\end{itemize}
 
 \section{Os números são aleatórios?}
 
 \section{Referências}
+Inversive congruential generator:
+\begin{itemize}
+  \item \href{https://en.wikipedia.org/wiki/Inversive_congruential_generator}
+    {Wikipedia}
+  \item
+    \href
+    {https://www.khanacademy.org/computing/computer-science/cryptography/modarit
+    hmetic/a/modular-inverses}{Khan
+    Academy}
+  \item
+    \href{https://books.google.com.br/books?id=OjUyDwAAQBAJ&printsec=frontcover#v=onepage&q&f=false}
+    {The Mathematical-Function Computation Handbook}, Nelson H.F. Beebe
+  \item \href{http://random.mat.sbg.ac.at/generators/wsc95/inversive/node2.html}
+    {pLab}
+  \item \href{http://www.sciencedirect.com/science/article/pii/0377042792901909}
+    {Construction of inversive congruential pseudorandom number generators with
+    maximal period length}, Jürgen Eichenauer-Herrmann, 2002
+  \item \href{http://www.cs.fsu.edu/~mascagni/papers/RICP2000_2.pdf}
+    {Parallel inversive congruential generators: Software and
+    field-programmable gate array implementations}, Michael Mascagni e Shahram
+    Rahimi, 2001
+\end{itemize}
 
+Lagged Fibonacci generator:
+\begin{itemize}
+  \item
+    \href{http://astro.uchicago.edu/~andrey/classes/rseminar/docs/aluru.pdf}
+    {Lagged Fibonacci Random Number Generators for Distributed Memory Parallel
+    Computers}, Srinivas Aluru, 1997
+  \item \href{https://pthree.org/2015/05/29/the-lagged-fibonacci-generator/}
+    {Aaron Toponce}
+  \item \href{https://en.wikipedia.org/wiki/Lagged_Fibonacci_generator}
+    {Wikipedia}
+  \item \href{http://berniepope.id.au/lfg.html}{Bernie Pope}
+  \item \href{https://www.phy.ornl.gov/csep/rn/node20.html}{Oak Ridge National
+    Laboratory}
+\end{itemize}
+
+Linear congruential generator:
+\begin{itemize}
+  \item \href{https://en.wikipedia.org/wiki/Linear_congruential_generator}{Wikipedia}
+  \item \href {http://www.eternallyconfuzzled.com/tuts/algorithms/jsw_tut_rand.aspx}{Eternally Confuzzled}
+  \item \href{https://rosettacode.org/wiki/Linear_congruential_generator}{Rosetta Code}
+\end{itemize}
 \end{document}
