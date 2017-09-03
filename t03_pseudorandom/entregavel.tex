@@ -63,6 +63,7 @@ definida por:
 \begin{equation}
   x_{i+1} \equiv ax_i^{-1} + c \ \ (mod \ \ q)
 \end{equation}
+
 Onde $x_i^{-1}$ é a função modular inversa entre $x$ e $q$. Os outros
 componentes dessa relação já foram explicados na documentação do código.
 Importante citar que para um correto funcionamento da relação $x$ e $q$ precisam
@@ -75,6 +76,7 @@ A sua concruência é definida por:
 \begin{equation}
   p_{n} \equiv p_{n-j} \star p_{n-k} \ \ (mod \ \ m)
 \end{equation}
+
 Onde $\star$ denota uma operação binária qualquer, ou seja, pode ser adição,
 subtração, multiplicação ou um xor. Os outros atributos dessa relação já foram
 explicados na documentação do código. A implementação do gerador nesse trabalho
@@ -89,6 +91,7 @@ recorrência é definida por:
 \begin{equation}
   X_{n+1} = (aX_n + c) \ \ mod \ \ m
 \end{equation}
+
 Os atributos apresentados já foram explicados na documentação do código. O
 máximo período que o LCG pode alcançar é de $m$ unidades
 
@@ -99,6 +102,7 @@ dois tipos:
   \item Essenciais para o funcionamento do gerador;
   \item Responsáveis por maximizar o desempenho do gerador.
 \end{enumerate}
+
 Optou-se por não implementar regras do segundo tipo, mas mais informações sobre
 elas podem ser obtidas nas referências citadas. Já com relação às regras do
 primeiro tipo, experimentou-se utilizar três estratégias diferentes:
