@@ -79,5 +79,6 @@ class icg:
         raise Exception("Nao foi possivel calcular a 'inversa modular'")
 
 if __name__ == '__main__':
-    psng = icg(1, 5, 2, 3)
-    print(psng.generate(30))
+    # nao usar sys.argv porque demora para gerar numeros com mais de 30 bits
+    psng = icg(109951162775, 100110021, 10, 1099511627775)
+    print(psng.generate(5))

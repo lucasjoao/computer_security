@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """Implementacao do 'Lagged Fibonacci generator'"""
+
 import random
+import sys
 
 
 class lfg:
@@ -17,12 +19,14 @@ class lfg:
 
         Args:
             seed: lista vazia que ira conter a semente do gerador
+            random: valor utilizado na montagem da semente
             alem dos ja especificados na classe
         """
         self.j = lags[0]
         self.k = lags[1]
         self.m = 2**exponent
         self.seed = []
+        self.random = 10000
 
     def make_seed(self):
         """Monta a lista de numeros que sera utilizada como semente no gerador
@@ -37,7 +41,7 @@ class lfg:
         """
         i = 0
         while i < self.k:
-            self.seed.append((int(random.random() * 10000)))
+            self.seed.append((int(random.random() * self.random)))
             i += 1
 
     def valid_amount(self, n):
@@ -106,5 +110,6 @@ class lfg:
         return result
 
 if __name__ == '__main__':
-    psng = lfg((70, 100), 4)
-    print(psng.alfg_generate(150))
+    psng = lfg((70, 100), int(sys.argv[2]))
+    psng.random = int(sys.argv[1])
+    print(psng.alfg_generate(5))

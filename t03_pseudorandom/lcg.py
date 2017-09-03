@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """Implementacao do 'Linear congruential generator'"""
 
+import sys
+
 
 class lcg:
     """Classe que constroi o gerador de numeros pseudo-aleatorios
@@ -59,5 +61,5 @@ class lcg:
         return result
 
 if __name__ == '__main__':
-    psng = lcg(1664525, 1013904223, 10, 2**32)
-    print(psng.generate(1000))
+    psng = lcg(1664525, 1013904223, int(sys.argv[1]), 2**int(sys.argv[2]))
+    print(psng.generate(5))
