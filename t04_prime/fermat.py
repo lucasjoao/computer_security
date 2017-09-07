@@ -3,6 +3,7 @@
 import random
 import sys
 import math
+import utils as u
 
 
 class fermat:
@@ -12,13 +13,7 @@ class fermat:
         self.bottom = bottom
         self.up = up
 
-    def make_number(self):
-        i = 2
-        while i % 2 == 0:
-            i = random.randint(self.bottom, self.up)
-        return i
-
-    def primarility_test(self, n):
+    def primality_test(self, n):
         i = 0
         while i < self.k:
             i += 1
@@ -30,8 +25,8 @@ class fermat:
 
     def generate(self):
         while True:
-            n = self.make_number()
-            if not self.primarility_test(n):
+            n = u.utils.make_number(self.bottom, self.up)
+            if not self.primality_test(n):
                 continue
             return n
 

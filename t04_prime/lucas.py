@@ -3,6 +3,7 @@
 import random
 import sys
 import primefac as pf
+import utils as u
 
 
 class lucas:
@@ -12,16 +13,10 @@ class lucas:
         self.bottom = bottom
         self.up = up
 
-    def make_number(self):
-        i = 2
-        while i % 2 == 0:
-            i = random.randint(self.bottom, self.up)
-        return i
-
     def prime_factors(self, n):
         return list(pf.primefac(n))
 
-    def primarility_test(self, n):
+    def primality_test(self, n):
         i = 0
         prime_factors = self.prime_factors(n-1)
         while i < self.k:
@@ -43,8 +38,8 @@ class lucas:
 
     def generate(self):
         while True:
-            n = self.make_number()
-            if not self.primarility_test(n):
+            n = u.utils.make_number(self.bottom, self.up)
+            if not self.primality_test(n):
                 continue
             return n
 
