@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """Funcoes uteis para a geracao de numeros primos"""
 
-
 import random
 
 

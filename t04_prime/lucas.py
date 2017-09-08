@@ -82,5 +82,7 @@ class lucas:
             return n
 
 if __name__ == '__main__':
-    png = lucas(10, int(sys.argv[1]), int(sys.argv[2]))
+    bottom = int('1' + '0' * int(sys.argv[1]), 2)
+    up = int('1' * int(sys.argv[2]), 2)
+    png = lucas(10, bottom, up)
     print(png.generate())

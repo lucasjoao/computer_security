@@ -1,3 +1,5 @@
+"""Testes unitarios dos codigos desenvolvidos na geracao de numeros primos"""
+
 import unittest
 from lucas import lucas
 from mr import mr
@@ -6,11 +8,11 @@ from utils import utils
 
 
 class Tests(unittest.TestCase):
-    # utils ###################################################################
+    # utils
     def test_odd(self):
         self.assertTrue(utils.make_number(100, 1000) % 2 != 0)
 
-    # mr ######################################################################
+    # mr
     def test_right_decomposite(self):
         png = mr(10, 100, 10000)
         self.assertEqual(png.decomposite(12), (2, 3))
@@ -27,7 +29,7 @@ class Tests(unittest.TestCase):
         png = mr(10, 100, 10000)
         self.assertFalse(png.primality_test(26, (1, 13)))
 
-    # fermat ##################################################################
+    # fermat
     def test_true_primality_fermat(self):
         png = fermat(10, 100, 10000)
         self.assertTrue(png.primality_test(8837))
@@ -36,7 +38,7 @@ class Tests(unittest.TestCase):
         png = fermat(10, 100, 10000)
         self.assertFalse(png.primality_test(297))
 
-    # lucas ###################################################################
+    # lucas
     def test_right_prime_factors(self):
         png = lucas(10, 100, 10000)
         self.assertEqual(png.prime_factors(75), [3, 5, 5])

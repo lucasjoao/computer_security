@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Gerador de numeros primos com base no 'Miller–Rabin primality test'"""
+"""Gerador de numeros primos com base no 'Miller-Rabin primality test'"""
 
 import random
 import sys
@@ -104,5 +104,7 @@ class mr:
             return n
 
 if __name__ == '__main__':
-    png = mr(10, int(sys.argv[1]), int(sys.argv[2]))
+    bottom = int('1' + '0' * int(sys.argv[1]), 2)
+    up = int('1' * int(sys.argv[2]), 2)
+    png = mr(10, bottom, up)
     print(png.generate())

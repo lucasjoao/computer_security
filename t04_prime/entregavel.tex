@@ -52,6 +52,8 @@
 \lstinputlisting{mr.py}
 \lstinputlisting{fermat.py}
 \lstinputlisting{lucas.py}
+\lstinputlisting{utils.py}
+\lstinputlisting{tests.py}
 
 \section{Explicação dos algoritmos}
 % copiar do enunciado como os números serão gerados
@@ -59,8 +61,6 @@
 % justificativa
 % comparação (verificar como foi feito no anterior)
 % comentar sobre não usar trabalho anterior
-% colocar código do utils
-% colocar código de tests
 
 \section{Comparação entre os algoritmos}
 % \begin{table}[h]
@@ -92,22 +92,51 @@
 % dificuldades
 % quanto tempo do seu computador é necessário para se gerar números primos
 
-\section{Complexidade dos algoritmos}
-% \begin{itemize}
-%   \item Inversive congruential generator: $O(n * q)$
-%   \begin{itemize}
-%     \item Devido aos laços nas linhas 44 e 74 do código.
-%   \end{itemize}
-%   \item Lagged Fibonacci generator: $O(n * k)$
-%   \begin{itemize}
-%     \item Devido aos laços nas linhas 94 e 95 do código.
-%   \end{itemize}
-%   \item Linear congruential generator: $O(n)$
-%     \begin{itemize}
-%       \item Devido ao laço na linha 51 do código.
-%     \end{itemize}
-% \end{itemize}
+\section{Complexidade dos algoritmos que verificam primalidade}
+\begin{itemize}
+  \item Miller-Rabin: no pior caso é $O(k * s)$.
+  \begin{itemize}
+    \item Devido aos laços nas linhas 70 e 78 do código.
+  \end{itemize}
+  \item Fermat: no pior caso é  $O(k * \log n)$.
+  \begin{itemize}
+    \item Devido ao laço na linha 39 e da chamada de método na linha 42.
+  \end{itemize}
+  \item Lucas: no pior caso é  $O(k * \log n)$.
+  \begin{itemize}
+    \item Devido aos laços nas linhas 55 e 61 do código. O número de fatores
+    primos da linha 61 pode ser aproximado para $\log n$.
+  \end{itemize}
+\end{itemize}
+
+\section{Código-fonte}
+\href{https://github.com/lucasjoao/computer_security/tree/master/t04_prime}
+{GitHub}
 
 \section{Referências}
+Miller-Rabin:
+\begin{itemize}
+  \item \href{https://www.cs.cmu.edu/~glmiller/Publications/Papers/Mi76.pdf}
+  {Riemann's Hypothesis and Tests for Primality}, Gary L. Miller
+  \item \href{https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test}
+  {Wikipedia}
+  \item \href{https://goo.gl/prTCSK}{Algorithm Implementation no Wikibooks}
+  \item \href{https://rosettacode.org/wiki/Miller%E2%80%93Rabin_primality_test}
+  {Rosetta Code}
+\end{itemize}
 
+Fermat:
+\begin{itemize}
+  \item \href{https://goo.gl/fwCCM3}{Khan Academy}
+  \item \href{https://en.wikipedia.org/wiki/Fermat_primality_test}
+  {Wikipedia}
+\end{itemize}
+
+Lucas:
+\begin{itemize}
+  \item \href{https://github.com/elliptic-shiho/primefac-fork}
+  {Módulo primefac}
+  \item \href{https://en.wikipedia.org/wiki/Lucas_primality_test}
+  {Wikipedia}
+\end{itemize}
 \end{document}
