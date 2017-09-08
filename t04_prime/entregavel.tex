@@ -55,42 +55,60 @@
 \lstinputlisting{utils.py}
 \lstinputlisting{tests.py}
 
-\section{Explicação dos algoritmos}
-% copiar do enunciado como os números serão gerados
-% explicação geral
-% justificativa
-% comparação (verificar como foi feito no anterior)
-% comentar sobre não usar trabalho anterior
+\section{Sobre a geração}
+Com a proposta no enunciado do trabalho: ``Uma forma de se gerar números primos
+é primeiro gerar um número aleatório ímpar (grande) e depois testá-lo para saber
+se é primo. Caso não seja, gera-se outro número aleatório até que seja primo.''.
+Portanto, essa foi a metodologia utilizada para a geração de números primos,
+onde a parte de verificação de primalidade foi realizada de três diferentes
+formas: Miller-Rabin, Fermat e Lucas.
+
+Para a geração de um número aleatório ímpar (grande) havia duas opções:
+\begin{itemize}
+  \item trabalhar com o código desenvolvido no trabalho anterior, ou
+  \item utilizar o módulo \lstinline{random} do \textit{Python}.
+\end{itemize}
+
+Optou-se pela segunda opção, pois acredito que ela possua um melhor desempenho,
+já que o módulo já é desenvolvido há vários anos por diversos programadores
+diferentes. Além disso, a escolha de Miller-Rabin, Fermat e Lucas foi feita com
+base na popularidade desses métodos, pois eles estão entre os que possuem mais
+material disponível na internet.
+
+O teste de primalidade de Miller-Rabin foi inicialmente desenvolvido como determinístico por Gary L. Miller, mas depois foi modificado para ser um algoritmo probabilístico por Michael O. Rabin. Ele se baseia na propriedade do pseudoprimo forte.
+
+Já a verificação de primalidade de Fermat é baseada no pequeno teorema de
+Fermat. Esse teorema diz que se $n$ é primo e $a$ não é divisível por $p$,
+então:
+\begin{equation}
+  a^{n-1} \equiv 1 \ \ (mod \ \ n)
+\end{equation}
+
+Por fim, o teste de Lucas, trabalho do matemático Francês de mesmo nome no
+século XIX, também realiza uma verificação probabilística, mas por outro lado
+necessita que os fatores primos de $n - 1$ já sejam conhecidos, onde $n$ é o
+número que será verificado.
+
+Por se tratarem de verificações probabilísticas e não determinísticas, todos os
+testes implementados podem indicar que um número composto é um número primo,
+porém a chance disso acontecer pode ser minimizada com o aumento de iterações
+nos algoritmos. Com essa característica é importante frisar que os números
+gerados são possívelmente primos.
 
 \section{Comparação entre os algoritmos}
-% \begin{table}[h]
-%   \centering
-%   \caption{5 números pseudo-aleatórios grandes}
-%   \begin{tabular}{|c|c|c|}
-%   \hline
-%   Gerador & Tamanho do número em bits & Tempo gasto  \\ \hline
-%   ICG     & 27 & 1m15,687s \\ \hline
-%   ICG     & mais que 30 & Muito tempo, impraticável \\ \hline
-%   LCG     & 40 & 0m0,023s  \\ \hline
-%   LFG     & 40 & 0m0,037s  \\ \hline
-%   LCG     & 56 & 0m0,027s  \\ \hline
-%   LFG     & 56 & 0m0,043s  \\ \hline
-%   LCG     & 80 & 0m0,030s  \\ \hline
-%   LFG     & 80 & 0m0,035s  \\ \hline
-%   LCG     & 128 & 0m0,023s  \\ \hline
-%   LFG     & 128 & 0m0,033s  \\ \hline
-%   LCG     & 168 & 0m0,027s  \\ \hline
-%   LFG     & 168 & 0m0,040s  \\ \hline
-%   LCG     & 512 & 0m0,027s  \\ \hline
-%   LFG     & 512 & 0m0,043s  \\ \hline
-%   LCG     & 2048 & 0m0,023s  \\ \hline
-%   LFG     & 2048 & Overflow \\ \hline
-%   LCG     & 4096 & 0m0,023s  \\ \hline
-%   \end{tabular}
-% \end{table}
+Com a verificação do Miller-Rabin foi possível gerar um número primo em todos os
+tamanhos solicitados. Já com a verificação de Fermat foi possível gerar um
+número primo com quase todos os tamanhos solicitados, só ficou impraticável para
+4096 bits, onde ocorreu de se passar 15 minutos e o programa não parar a
+execução. Por fim, com a verificação de Lucas só foi possível gerar um número
+primo com até 128 bits, porque com valores acima disso (e.g. 168) o tempo ficou
+muito longo, mais que 15 minutos, e, também nada do programa parar.
 
-% dificuldades
-% quanto tempo do seu computador é necessário para se gerar números primos
+Imagino que o motivo da demora no Fermat esteja associado com a utilização do
+\lstinline{math.gcd(a, n)} na linha 42. Já no Lucas, acredito que a lentidão
+deve estar associada com a utilização de um módulo externo em
+\lstinline{pf.primefac(n)} na linha 38. Por fim, na tabela \ref{table:tests} há
+o detalhamento dos testes realizados.
 
 \section{Complexidade dos algoritmos que verificam primalidade}
 \begin{itemize}
@@ -98,11 +116,11 @@
   \begin{itemize}
     \item Devido aos laços nas linhas 70 e 78 do código.
   \end{itemize}
-  \item Fermat: no pior caso é  $O(k * \log n)$.
+  \item Fermat: no pior caso é $O(k * \log n)$.
   \begin{itemize}
     \item Devido ao laço na linha 39 e da chamada de método na linha 42.
   \end{itemize}
-  \item Lucas: no pior caso é  $O(k * \log n)$.
+  \item Lucas: no pior caso é $O(k * \log n)$.
   \begin{itemize}
     \item Devido aos laços nas linhas 55 e 61 do código. O número de fatores
     primos da linha 61 pode ser aproximado para $\log n$.
@@ -139,4 +157,42 @@ Lucas:
   \item \href{https://en.wikipedia.org/wiki/Lucas_primality_test}
   {Wikipedia}
 \end{itemize}
+
+\section{Tabelas}
+\begin{table}[h]
+  \centering
+  \caption{1 número primo grande}
+  \label{table:tests}
+  \begin{tabular}{|c|c|c|}
+  \hline
+  Gerador & Tamanho do número em bits & Tempo gasto  \\ \hline
+  Lucas     & 40 & 0m0,040s \\ \hline
+  Fermat     & 40 & 0m0,037s  \\ \hline
+  Miller-Rabin     & 40 & 0m0,050s  \\ \hline
+  Lucas     & 56 & 0m0,097s \\ \hline
+  Fermat     & 56 & 0m0,043s  \\ \hline
+  Miller-Rabin     & 56 & 0m0,063s  \\ \hline
+  Lucas     & 80 & 0m2,927s \\ \hline
+  Fermat     & 80 & 0m0,047s  \\ \hline
+  Miller-Rabin     & 80 & 0m0,063s  \\ \hline
+  Lucas     & 128 & 12m18,283s \\ \hline
+  Fermat     & 128 & 0m0,050s  \\ \hline
+  Miller-Rabin     & 128 & 0m0,050s  \\ \hline
+  Lucas     & 168 & IMPRATICÁVEL \\ \hline
+  Fermat     & 168 & 0m0,050s  \\ \hline
+  Miller-Rabin     & 168 & 0m0,077s  \\ \hline
+  Fermat     & 224 & 0m0,053s  \\ \hline
+  Miller-Rabin     & 224 & 0m0,050s  \\ \hline
+  Fermat     & 256 & 0m0,073s  \\ \hline
+  Miller-Rabin     & 256 & 0m0,087s  \\ \hline
+  Fermat     & 512 & 0m0,493s  \\ \hline
+  Miller-Rabin     & 512 & 0m0,390s  \\ \hline
+  Fermat     & 1024 & 0m2,693s  \\ \hline
+  Miller-Rabin     & 1024 & 0m1,533s \\ \hline
+  Fermat     & 2048 & 0m26,563s  \\ \hline
+  Miller-Rabin     & 2048 & 0m5,683s \\ \hline
+  Fermat     & 4096 & IMPRATICÁVEL  \\ \hline
+  Miller-Rabin     & 4096 & 0m18,910s \\ \hline
+  \end{tabular}
+\end{table}
 \end{document}
