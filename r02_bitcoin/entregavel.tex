@@ -44,7 +44,35 @@ timestamp e divulga para todos. Cada timestamp possui o timestamp anterior ao
 seu hash.
 
 O servidor timestamp é implementado em uma rede peer-to-peer. Onde o
-``proof-of-work'' é
+``proof-of-work'' é um incremento de um ``nonce'' no bloco até chegar em um
+valor que fornece ao hash de bloco os bits zeros solicitados. Um bloco não pode
+ser mudado sem que o trabalho seja refeito. Portanto, se algum bloco for
+encadeado posteriormente, então significa que para mudar o primeiro será preciso
+retrabalhar nesses blocos adicionados.
+
+Então a ``proof-of-work'' é basicamente: um CPU, um voto. A decisão da maioria é
+representada pela maior corrente, que vai possuir a maior ``proof-of-work''
+relaizada. Com isso, a probabilidade de um ataque ter sucesso diminui
+exponencialmente com a adição de blocos subsequentes em uma corrente.
+
+Na rede os nodos sempre irão considerar a corrente mais longa como sendo a
+correta e continuarão seu trabalho nela. Além disso, não é preciso que o
+``broadcast'' de uma nova transação atinja todos os nodos.
+
+Por convenção, a primeira transação em um bloco é uma transação especial que
+começa uma nova moeda pertencente ao criador do bloco. Isso é um incentivo para
+os nodos participarem da rede e um modo de colocar moedas em circulação, já que
+não há uma autoridade central para realizar isso. Esse cenário é análogo a
+mineradores gastando recursos para colocar ouro em circulação. Esse incentivo
+ajuda a manter os nodos honestos.
+
+Para economizar espaço em disco e não corromper o hash de um bloco, as trasação
+são ``hashed'' em uma árvore Merkle. Aliás, todo o processo descrito até agora
+pode ser implementado de maneira mais simples, sem possuir uma rede inteira de
+nodos, e, só manter uma cópia do último bloco. Porém, haverá riscos de erros. Um
+negócio que recebe pagamentos constantemente provavelmente não irá optar por
+essa solução.
+
 
 
 \section*{Referência}
