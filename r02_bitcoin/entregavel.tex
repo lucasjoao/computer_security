@@ -3,6 +3,7 @@
 \usepackage[a4paper, left=30mm, right=30mm, top=30mm, bottom=30mm]{geometry}
 \usepackage{indentfirst} % to indent fist paragraph
 \usepackage[brazilian]{babel} % BR
+\usepackage{amsmath}
 
 \title{Resumo artigo original do Bitcoin:
     \\
@@ -73,7 +74,48 @@ nodos, e, só manter uma cópia do último bloco. Porém, haverá riscos de erro
 negócio que recebe pagamentos constantemente provavelmente não irá optar por
 essa solução.
 
+As transações podem conter múltiplas entradas e saídas. Normalmente será uma
+única entrada resultante de uma grande transação anterior ou múltiplas pequenas
+entradas combinada, e, no máximo duas saídas, o troco quando necessário e o
+pagamento em si. A dependência entre todas as transações não é um problema aqui:
+não é preciso extrair uma cópia do histórico de transação completo.
 
+No âmbito da privacidade, a necessidade de ter que anunciar todas as transações
+não limita o que pessoas externas conseguem saber sobre uma transação, mas a
+privacidade consegue ser mantida da seguinte forma: chaves públicas são
+anônimas. Outra forma de ajudar a privacidade é  fazer com que para cada
+transação um novo par de chaves tenha que ser gerado, assim dificulta associar
+determinada chave com determinada pessoa.
+
+Sobre a segurança, nenhum nodo vai aceitar uma transação inválida como
+pagamento, além do que nodos honestos nunca vão aceitar um bloco que contenha
+esse tipo de transação. Um atacante só pode tentar mudar sua própria transação
+para tentar pegar o dinheiro que gastou nela.
+
+A corrida entre uma corrente honesta e uma corrente do atacante pode ser
+caracterizada como uma ``Binomial Random Walk''. A probabilidade da corrente do
+atacante ter sucesso pode ser expressa como:
+\begin{equation}
+    q_z = \begin{cases}
+            1         & \text{if } p \leq q \\
+            (q / p)^z & \text{if } p > q
+          \end{cases}
+\end{equation}
+
+Onde:
+\begin{itemize}
+  \item $p$ = probabilidade de um nodo honesto encontrar o próximo bloco
+  \item $q$ = probabilidade de um atacante encontrar o próximo bloco
+  \item $q_z$ = probabilidade que um atacante vai ter se tiver $z$ blocos atrás
+\end{itemize}
+
+Assumimos que p $>$ q, então a probabilidade cai exponencialmente a medida que o
+número de blocos aumenta. Então a melhor chance do atacante é no começo. Aliás,
+o potencial de sucesso de um atacante conseguir mudar uma transação que ele
+acabou de realizar pode ser expresso como uma distribuição de Poisson.
+
+Com isso, o bitcoin, modelo proposto aqui, é um framework de moedas criadas a
+partir de assinaturas digitais que não possui o problema de duplo pagamento.
 
 \section*{Referência}
 NAKAMOTO, Satoshi. Bitcoin: A peer-to-peer electronic cash system. 2008.
