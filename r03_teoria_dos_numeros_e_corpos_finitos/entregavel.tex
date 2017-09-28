@@ -1,0 +1,77 @@
+\documentclass[fleqn, 12pt]{article}
+\usepackage[utf8]{inputenc} % default from sharelatex
+\usepackage[a4paper, left=30mm, right=30mm, top=30mm, bottom=30mm]{geometry}
+\usepackage{indentfirst} % to indent fist paragraph
+\usepackage[brazilian]{babel} % BR
+\usepackage{amsmath}
+
+\title{Teoria dos números e corpos finitos}
+
+\author{Lucas João Martins}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{}
+\subsection*{1. (4.6) For each of the following equations, find an integer $x$
+that satisfies the equation.}
+  \subsubsection*{a. $5x \equiv 4 \ \ (mod \ \ 3)$}
+    \begin{align*}
+      & x = 2 \\
+      & 5 \times 2 = 10 \\
+      & 10 - 4 = 6 = 3 \times 2
+    \end{align*}
+  \subsubsection*{b. $7x \equiv 6 \ \ (mod \ \ 5)$}
+    \begin{align*}
+      & x = 3 \\
+      & 7 \times 3 = 21 \\
+      & 21 - 6 = 15 = 5 \times 3
+    \end{align*}
+  \subsubsection*{c. $9x \equiv 8 \ \ (mod \ \ 7)$}
+    \begin{align*}
+      & x = 4 \\
+      & 9 \times 4 = 36 \\
+      & 36 - 8 = 28 = 7 \times 4
+    \end{align*}
+
+\subsection*{2. (4.7) In this text, we assume that the modulus is a positive
+integer. But the definition of the expression $a \ \ mod \ \ n$ also makes
+ perfect sense if $n$ is negative. Determine the following:}
+
+  Usando $a \ \ mod \ \ n = a - \lfloor a / n \rfloor \times n$.
+
+  \subsubsection*{a. $5 \ \ mod \ \ 3$}
+    \begin{align*}
+      & 2
+    \end{align*}
+  \subsubsection*{b. $5 \ \ mod \ \ -3$}
+    \begin{align*}
+      & 5 - \lfloor 5 / -3 \rfloor \times -3 \\
+      & 5 - (-2 \times -3) \\
+      & 5 - 6 \\
+      & -1 \\
+    \end{align*}
+  \subsubsection*{c.  $-5 \ \ mod \ \ 3$}
+    \begin{align*}
+      & -5 - \lfloor -5 / 3 \rfloor \times 3 \\
+      & -5 - (-2 \times 3) \\
+      & -5 + 6 \\
+      & 1 \\
+    \end{align*}
+  \subsubsection*{d. $-5 \ \ mod \ \ -3$}
+    \begin{align*}
+      & -5 - \lfloor -5 / -3 \rfloor \times -3 \\
+      & -5 - (1 \times -3) \\
+      & -5 + 3 \\
+      & -2 \\
+    \end{align*}
+
+\subsection*{3. (4.8) A modulus of 0 does not fit the definition but is defined
+by convention as follows: $a \ \ mod \ \ 0 = a$. With this definition in mind,
+what does the following expression mean: $a \equiv b \ \ (mod \ \ 0)$?}
+
+  Significa que $a$ e $b$ são iguais.
+
+\end{document}
