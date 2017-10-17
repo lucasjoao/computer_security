@@ -1,0 +1,43 @@
+1. Quantas raízes primitivas tem 419?
+
+180
+
+2. Quantas raízes primitivas tem 41?
+
+16
+
+3. Prove que para qualquer primo p, a soma de suas raízes primitivas é congruente a μ(p-1), onde μ é a função Möbius.
+
+4. Existem muitos métodos para se determinar a raíz primitiva de um número primo além, obviamente, a partir da definição. Um método popular é apresentado em https://en.wikipedia.org/wiki/Primitive_root_modulo_n#Finding_primitive_root. Descreva esse método.
+
+5. Prove que para qualquer primo p>3, o produto de suas raízes primitivas é congruente a 1 módulo p.
+
+6. O que é a raiz primitiva módulo n? 
+
+É um número g onde todo número a coprimo de n é congruente à potência de g módulo n. Ou seja, para todo inteiro a que é coprimo de n, há um inteiro k que faça gk ≡ a (mod n).
+
+Essa definição pode ser vista também da seguinte forma: g é uma raíz primitiva módulo n, se todo número m de 1 até n-1 for possível de ser representado na forma g^x ≡ a (mod n).
+
+7. Qual é a relação, se é que existe, entre o Totiente de Euler de p e a quantidade de raízes primitivas de p?
+
+Se p tem uma raíz primitiva, então a quantidade de raízes primitivas de p será ϕ(ϕ(p)), onde ϕ é a função totiente de euler.
+
+8. Utilizando o método descrito em https://en.wikipedia.org/wiki/Primitive_root_modulo_n#Finding_primitive_root, determine uma raiz primitiva de 2141. Mostre e explicada cada um dos passos de execução do método. 
+
+9. Existe um método direto para se determinar todas as raízes primitivas de um número primo p, uma vez que se conhece ao menos uma das raízes. Pesquise na literatura este método. Explique-o e mostre um exemplo.
+
+10. Quais números abaixo são raízes primitivas de 1009?
+
+11. Desenvolva um programa de computador em Python ( ou outra linguagem, justificando sua escolha ) para se determinar as raízes primitivas de um número primo p, utilizando o método apresentado em https://en.wikipedia.org/wiki/Primitive_root_modulo_n#Finding_primitive_root. Apresente aqui o código comentado do programa desenvolvido.
+
+12. Por que a raiz primitiva g é um gerador de um grupo multiplicativo de inteiros módulo n? Além de explicar, mostre um exemplo.
+
+13. Apresente aplicações ( pelo menos duas ), com exemplos didáticos, de como usar as raízes primitivas
+
+14. Quantas raízes primitivas tem um número primo p? Justifique a sua resposta.
+
+A quantidade de raízes primitivas de um número n é ϕ(ϕ( n )). Se n for primo, ou seja, n = p, então ϕ(p) = p - 1. Portanto, a quantidade de raízes primitivas de um número primo p é ϕ(p - 1).
+
+15. Sem usar o método da força bruta, determine todas as raízes primitivas de 23, sabendo que 5 é uma dessas raízes. Explique o método utilizado.
+
+
