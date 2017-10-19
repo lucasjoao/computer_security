@@ -8,11 +8,17 @@
 
 3. Prove que para qualquer primo p, a soma de suas raízes primitivas é congruente a μ(p-1), onde μ é a função Möbius.
 
+Não fiz :(
+
 4. Existem muitos métodos para se determinar a raíz primitiva de um número primo além, obviamente, a partir da definição. Um método popular é apresentado em https://en.wikipedia.org/wiki/Primitive_root_modulo_n#Finding_primitive_root. Descreva esse método.
+
+Com o número primo p, primeiro se calcula o phi de p. Depois deve-se calcular os fatores primos desse phi de p. Por fim, para todo m de 2 até p-1 se calcula m^(phi( p ) / Pi) mod p, onde Pi são os fatores primos calculado no segundo passo. O m que para todos os Pi's gerar um resultado diferente de 1 na última conta será uma raíz primitiva de p.
 
 5. Prove que para qualquer primo p>3, o produto de suas raízes primitivas é congruente a 1 módulo p.
 
-6. O que é a raiz primitiva módulo n? 
+Não fiz :(
+
+6. O que é a raiz primitiva módulo n?
 
 É um número g onde todo número a coprimo de n é congruente à potência de g módulo n. Ou seja, para todo inteiro a que é coprimo de n, há um inteiro k que faça gk ≡ a (mod n).
 
@@ -22,17 +28,55 @@ Essa definição pode ser vista também da seguinte forma: g é uma raíz primit
 
 Se p tem uma raíz primitiva, então a quantidade de raízes primitivas de p será ϕ(ϕ(p)), onde ϕ é a função totiente de euler.
 
-8. Utilizando o método descrito em https://en.wikipedia.org/wiki/Primitive_root_modulo_n#Finding_primitive_root, determine uma raiz primitiva de 2141. Mostre e explicada cada um dos passos de execução do método. 
+8. Utilizando o método descrito em https://en.wikipedia.org/wiki/Primitive_root_modulo_n#Finding_primitive_root, determine uma raiz primitiva de 2141. Mostre e explicada cada um dos passos de execução do método.
+
+2141 é um número primo.
+
+phi(2141) = 2140 (propriedade do totiente de euler para números primos)
+
+Os fatores primos de 2140 são 2, 5 e 107
+
+2140 / 2 = 1070 / 2 = 535 / 5 = 107 / 107 = 1
+
+Primeiro com 2:
+
+    2^(2140/2) mod 2141 = 2^1070 mod 2141 = 2140
+    2^(2140/5) mod 2141 = 2^428 mod 2141 = 893
+    2^(2140/107) mod 2141 = 2^20 mod 2141 = 1627
+
+Todos são diferentes de 1, portanto 2 é uma raiz primitiva.
 
 9. Existe um método direto para se determinar todas as raízes primitivas de um número primo p, uma vez que se conhece ao menos uma das raízes. Pesquise na literatura este método. Explique-o e mostre um exemplo.
 
+Considerando que n é uma raíz primitiva conhecida de p, então para se determinar todas as outras raízes, deve-se pegar todo valor k entre 1 e p-1 que são coprimos para depois disso utilizar essa lista com valores para k da seguinte maneira:
+
+n^k mod p
+
+O resultado da expressão anterior para cada k existente será uma raíz primitiva de p.
+
+Por exemplo:
+
+Considere o número primo 761 e sua raíz primitiva conhecida 6.
+
+Um possível valor para k nesse exemplo seria 3, pois ele é coprimo de 760, já que gcd(760, 3) == 1.
+
+Com isso, 6^3 mod 761 irá gerar uma outra raíz primitiva, portanto 216 é uma outra raíz primitiva.
+
 10. Quais números abaixo são raízes primitivas de 1009?
+
+[11, 17, 22]
 
 11. Desenvolva um programa de computador em Python ( ou outra linguagem, justificando sua escolha ) para se determinar as raízes primitivas de um número primo p, utilizando o método apresentado em https://en.wikipedia.org/wiki/Primitive_root_modulo_n#Finding_primitive_root. Apresente aqui o código comentado do programa desenvolvido.
 
+https://github.com/lucasjoao/computer_security/blob/master/t05_primitive_root_modulo_n/prmn.py
+
 12. Por que a raiz primitiva g é um gerador de um grupo multiplicativo de inteiros módulo n? Além de explicar, mostre um exemplo.
 
+Não fiz :(
+
 13. Apresente aplicações ( pelo menos duas ), com exemplos didáticos, de como usar as raízes primitivas
+
+Raízes primitivas estão relacionadas com logaritmos discretos, que por sua vez são a base da segurança de alguns algoritmos de criptografia assimétrica.
 
 14. Quantas raízes primitivas tem um número primo p? Justifique a sua resposta.
 
@@ -40,4 +84,20 @@ A quantidade de raízes primitivas de um número n é ϕ(ϕ( n )). Se n for prim
 
 15. Sem usar o método da força bruta, determine todas as raízes primitivas de 23, sabendo que 5 é uma dessas raízes. Explique o método utilizado.
 
+Considerando que n é uma raíz primitiva conhecida de p, então para se determinar todas as outras raízes, deve-se pegar todo valor k entre 1 e p-1 que são coprimos para depois disso utilizar essa lista com valores para k da seguinte maneira:
 
+n^k mod p
+
+O resultado da expressão anterior para cada k existente será uma raíz primitiva de p.
+
+Portanto, a lista de k seria:
+
+[1, 3, 5, 7, 9, 13, 15, 17, 19, 21]
+
+Para cada k dessa lista se aplica a seguinte fórmula:
+
+5^k mod 23
+
+E com isso irá gerar as raízes primitivas:
+
+[5, 10, 20, 17, 11, 21, 19, 15, 7, 14]
