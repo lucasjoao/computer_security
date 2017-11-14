@@ -7,9 +7,14 @@ import matplotlib.pyplot as plt
 import numpy
 import sys
 
+###############################################################################
+# programa somente funciona com python 2, por isso possui o seguinte check:
 if sys.version_info[0] >= 3:
     raise Exception("Executar com Python 2.")
+###############################################################################
 
+###############################################################################
+# um dict para cada bitcoin que possuira todos os dados coletados
 LTC = {'marketcap': [], 'price': [], 'volume': []}
 MONA = {'marketcap': [], 'price': [], 'volume': []}
 DOGE = {'marketcap': [], 'price': [], 'volume': []}
@@ -20,6 +25,8 @@ XMR = {'marketcap': [], 'price': [], 'volume': []}
 BCN = {'marketcap': [], 'price': [], 'volume': []}
 BTC = {'marketcap': [], 'price': [], 'volume': []}
 
+# dict que associa os dicts declarados previamente com os seus respectivos ids
+# utilizados no site https://coinmarketcap.com/
 ALTCOINS = {'id-litecoin': LTC,
             'id-monacoin': MONA,
             'id-dogecoin': DOGE,
@@ -29,7 +36,13 @@ ALTCOINS = {'id-litecoin': LTC,
             'id-monero': XMR,
             'id-bytecoin-bcn': BCN,
             'id-bitcoin': BTC}
+###############################################################################
 
+###############################################################################
+# inicio do parser que acessa os dados historicos em https://coinmarketcap.com/
+# e pega os valores desejados para que alimente os dicts ja declarados
+
+# todas as urls que possuem dados historicos do ultimo ano
 urls = []
 urls.append('https://coinmarketcap.com/historical/20171112/')
 urls.append('https://coinmarketcap.com/historical/20171105/')
@@ -90,6 +103,7 @@ for url in urls:
     tree = html.fromstring(page.content)
 
     for idcoin, coin in ALTCOINS.iteritems():
+        # xpath e utilizado para acessar o conteudo html
         tr = '//tr[@id="{}"]'.format(idcoin)
 
         td_class = '//td[@class="no-wrap market-cap text-right"]/text()'
@@ -105,9 +119,15 @@ for url in urls:
         clean_volume = round(float(volume[0].replace('$', '').replace(',', '')),
                              2)
 
+        # valores que alimentam as listas dentro dos dicts sao ja sao limpos no
+        # momento da extracao
         coin['marketcap'].append(clean_cap)
         coin['price'].append(clean_price)
         coin['volume'].append(clean_volume)
+###############################################################################
+
+###############################################################################
+# dicts auxiliares para serem utilizados nos calculos estatisticos
 
 MARKETCAP = {'LTC': LTC['marketcap'],
              'MONA': MONA['marketcap'],
@@ -126,6 +146,11 @@ PRICE = {'LTC': LTC['price'], 'MONA': MONA['price'], 'DOGE': DOGE['price'],
 VOLUME = {'LTC': LTC['volume'], 'MONA': MONA['volume'], 'DOGE': DOGE['volume'],
           'NEO': NEO['volume'], 'XEM': XEM['volume'], 'STEEM': STEEM['volume'],
           'XMR': XMR['volume'], 'BCN': BCN['volume'], 'BTC': BTC['volume']}
+###############################################################################
+
+###############################################################################
+# calculo e plotagem dos coeficientes de correlacao por pearson para market
+# cap, volume e preco
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
@@ -162,10 +187,18 @@ ax.set_xticklabels(VOLUME.keys())
 ax.set_yticklabels(VOLUME.keys())
 plt.title(u'Correlação por Pearson do volume de transação no último ano')
 plt.show()
+###############################################################################
 
+###############################################################################
+# valores do bitcoin so foram utilizados em uma comparacao geral, agora nao
+# sao mais necessarios
 del MARKETCAP['BTC']
 del PRICE['BTC']
 del VOLUME['BTC']
+###############################################################################
+
+###############################################################################
+# calculo e plotagem das medias do market cap, preço e volume
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
@@ -193,6 +226,10 @@ ax.yaxis.set_major_formatter(y_formatter)
 ax.grid(True)
 plt.title(u'Média em dólares do volume de transação no último ano')
 plt.show()
+###############################################################################
+
+###############################################################################
+# calculo e plotagem dos desvios padroes do market cap, preço e volume
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
@@ -220,6 +257,11 @@ ax.yaxis.set_major_formatter(y_formatter)
 ax.grid(True)
 plt.title(u'Desvio padrão do volume de transação no último ano')
 plt.show()
+###############################################################################
+
+###############################################################################
+# calculo e plotagem dos coeficientes de correlacao por pearson entre market
+# cap, volume e preco de cada altcoin analisada
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
@@ -316,3 +358,4 @@ ax.set_xticklabels(BCN.keys())
 ax.set_yticklabels(BCN.keys())
 plt.title(u'Correlação por Pearson do market cap, preço e volume do BCN')
 plt.show()
+###############################################################################
