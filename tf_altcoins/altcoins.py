@@ -14,7 +14,7 @@ if sys.version_info[0] >= 3:
 ###############################################################################
 
 ###############################################################################
-# um dict para cada bitcoin que possuira todos os dados coletados
+# um dict para cada coin que possuira todos os dados coletados
 LTC = {'marketcap': [], 'price': [], 'volume': []}
 MONA = {'marketcap': [], 'price': [], 'volume': []}
 DOGE = {'marketcap': [], 'price': [], 'volume': []}
